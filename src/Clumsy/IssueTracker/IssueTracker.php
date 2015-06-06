@@ -39,15 +39,18 @@ class IssueTracker {
     {
         $owners = (array)$this->config->get('clumsy/issue-tracker::watchers.owners');
 
-        foreach ($owners as $class => $id)
+        foreach ($owners as $class => $ids)
         {
             $class = '\\'.ltrim($class, '\\');
 
-            $model = with(new $class)->find($id);
-            
-            if ($model)
+            foreach ((array)$ids as $id)
             {
-                $this->addWatcher($issue, $model, $owner = true);
+                $model = with(new $class)->find($id);
+                
+                if ($model)
+                {
+                    $this->addWatcher($issue, $model, $owner = true);
+                }
             }
         }
     }
