@@ -32,18 +32,31 @@ abstract class Provider {
     }
 
     /**
-     * Creates an issue.
+     * Instantiates a model.
+     *
+     * @param  array  $attributes
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public function instantiate(array $attributes)
+    {
+        $model = $this->createModel();
+        $model->fill($attributes);
+
+        return $model;
+    }
+
+    /**
+     * Creates a model.
      *
      * @param  array  $attributes
      * @return Illuminate\Database\Eloquent\Model
      */
     public function create(array $attributes)
     {
-        $issue = $this->createModel();
-        $issue->fill($attributes);
-        $issue->save();
+        $model = $this->instantiate($attributes);
+        $model->save();
 
-        return $issue;
+        return $model;
     }
 
     /**

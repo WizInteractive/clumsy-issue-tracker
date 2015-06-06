@@ -69,8 +69,8 @@ class IssueTracker {
     {
         $attributes = array('author_id' => $author->id, 'author_type' => class_basename($author)) + $attributes;
 
-        $message = $this->messages->create($attributes);
+        $message = $this->messages->instantiate($attributes);
 
-        return $issue;
+        return $message;
     }
 }
