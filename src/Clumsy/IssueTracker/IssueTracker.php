@@ -3,7 +3,7 @@
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\DB;
 use Clumsy\IssueTracker\Contracts\IssueInterface;
-use Clumsy\IssueTracker\Contracts\WatcherInterface;
+use Clumsy\IssueTracker\Contracts\IssueWatcherInterface;
 use Clumsy\IssueTracker\Contracts\IssueSubjectInterface;
 use Clumsy\IssueTracker\Support\IssueProvider;
 use Clumsy\IssueTracker\Support\MessageProvider;
@@ -30,7 +30,7 @@ class IssueTracker {
         return $this->messages->getModel();
     }
 
-    public function addWatcher(IssueInterface $issue, WatcherInterface $watcher, $owner = false)
+    public function addWatcher(IssueInterface $issue, IssueWatcherInterface $watcher, $owner = false)
     {
         $watcher->issues()->save($issue, compact('owner'));
     }

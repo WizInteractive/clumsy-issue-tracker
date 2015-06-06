@@ -1,6 +1,7 @@
 <?php namespace Clumsy\IssueTracker\Traits;
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
+use Clumsy\IssueTracker\Contracts\IssueInterface;
 
 trait IssueWatcher {
 
@@ -43,6 +44,13 @@ trait IssueWatcher {
     public function resolvedIssuesOwned()
     {
         return $this->issuesOwned()->where('resolved', true);
+    }
+
+    public function ownsIssue(IssueInterface $issue)
+    {
+        $owned = $this->issuesOwned->lists('id');
+
+        return in_array($issue->id, $owned);
     }
 
     public function messages()
