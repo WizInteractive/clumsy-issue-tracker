@@ -1,10 +1,16 @@
 <?php namespace Clumsy\IssueTracker;
 
 use Illuminate\Config\Repository as Config;
+use Illuminate\Support\Facades\DB;
+use Clumsy\IssueTracker\Contracts\IssueInterface;
+use Clumsy\IssueTracker\Contracts\WatcherInterface;
+use Clumsy\IssueTracker\Contracts\IssueSubjectInterface;
 use Clumsy\IssueTracker\Support\IssueProvider;
 use Clumsy\IssueTracker\Support\MessageProvider;
 
 class IssueTracker {
+
+    protected $watchers_table = 'issue_watchers';
 
     public function __construct(IssueProvider $issue_provider, MessageProvider $message_provider, Config $config)
     {
@@ -24,18 +30,37 @@ class IssueTracker {
         return $this->messages->getModel();
     }
 
-    public function assignDefaultOwners($issue)
+    public function addWatcher(IssueInterface $issue, WatcherInterface $watcher, $owner = false)
     {
-
+        $watcher->issues()->save($issue, compact('owner'));
     }
 
-    public function create(array $attributes)
+    public function addDefaultOwners(IssueInterface $issue)
     {
-        $attributes = array('private' => $this->config->get('clumsy/issue-tracker::issues.private')) + $attributes;
+        $owners = (array)$this->config->get('clumsy/issue-tracker::watchers.owners');
+
+        foreach ($owners as $class => $id)
+        {
+            $class = '\\'.ltrim($class, '\\');
+
+            $model = with(new $class)->find($id);
+            
+            if ($model)
+            {
+                $this->addWatcher($issue, $model, $owner = true);
+            }
+        }
+    }
+
+    public function create(IssueSubjectInterface $subject, array $attributes = null)
+    {
+        $attributes = array('private' => $this->config->get('clumsy/issue-tracker::issues.private')) + (array)$attributes;
         
         $issue = $this->issues->create($attributes);
 
-        $this->assignDefaultOwners($issue);
+        $subject->issues()->save($issue);
+
+        $this->addDefaultOwners($issue);
 
         return $issue;
     }

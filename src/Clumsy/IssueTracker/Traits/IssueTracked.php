@@ -9,13 +9,8 @@ trait IssueTracked {
         return $this->morphToMany(IssueTracker::getIssueModel(), 'issue_subject');
     }
 
-    public function createIssue()
+    public function createIssue(array $attributes = null)
     {
-        $issue = IssueTracker::create(array(
-            'subject_id'   => $this->id,
-            'subject_type' => class_basename($this),
-        ));
-
-        return $issue;
+        return IssueTracker::create($this, $attributes);
     }
 }
