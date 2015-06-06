@@ -10,8 +10,6 @@ class IssueMessage extends Eloquent implements IssueMessageInterface {
         'created_at',
         'updated_at',
         'issue_id',
-        'author_type',
-        'author_id',
     );
 
     public function author()
