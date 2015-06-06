@@ -1,6 +1,6 @@
 <?php namespace Clumsy\IssueTracker\Contracts;
 
-interface MessageInterface {
+interface IssueMessageInterface {
 
     public function author();
 }

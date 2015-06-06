@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Clumsy\IssueTracker\Facade as IssueTracker;
-use Clumsy\IssueTracker\Contracts\MessageInterface;
+use Clumsy\IssueTracker\Contracts\IssueMessageInterface;
 use Clumsy\IssueTracker\Contracts\IssueInterface;
 
 class Issue extends Eloquent implements IssueInterface {

@@ -4,5 +4,5 @@ interface IssueInterface {
 
     public function messages();
 
-    public function addMessage(MessageInterface $message);
+    public function addMessage(array $attributes, $author);
 }

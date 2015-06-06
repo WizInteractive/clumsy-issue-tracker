@@ -1,9 +1,9 @@
 <?php namespace Clumsy\IssueTracker\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Clumsy\IssueTracker\Contracts\MessageInterface;
+use Clumsy\IssueTracker\Contracts\IssueMessageInterface;
 
-class IssueMessage extends Eloquent implements MessageInterface {
+class IssueMessage extends Eloquent implements IssueMessageInterface {
 
     protected $guarded = array(
         'id',
