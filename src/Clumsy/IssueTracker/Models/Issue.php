@@ -20,7 +20,7 @@ class Issue extends Eloquent implements IssueInterface {
 
     public function addMessage(array $attributes, $author)
     {
-        $message = IssueTracker::createMessage(array $attributes, $author);
+        $message = IssueTracker::createMessage($attributes, $author);
 
         $this->messages()->save($message);
 
