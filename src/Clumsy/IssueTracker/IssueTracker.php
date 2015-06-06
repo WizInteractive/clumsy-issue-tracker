@@ -54,7 +54,7 @@ class IssueTracker {
 
     public function create(IssueSubjectInterface $subject, array $attributes = null)
     {
-        $attributes = array('private' => $this->config->get('clumsy/issue-tracker::issues.private')) + (array)$attributes;
+        $attributes = array('private' => (bool)$this->config->get('clumsy/issue-tracker::issues.private')) + (array)$attributes;
         
         $issue = $this->issues->create($attributes);
 
