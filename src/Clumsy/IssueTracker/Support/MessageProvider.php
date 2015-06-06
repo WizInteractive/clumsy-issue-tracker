@@ -2,5 +2,5 @@
 
 class MessageProvider extends Provider {
 
-    protected $model = 'Clumsy\IssueTracker\Models\Message';
+    protected $model = 'Clumsy\IssueTracker\Models\IssueMessage';
 }

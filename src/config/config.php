@@ -9,7 +9,7 @@ return array(
 		| Model
 		|--------------------------------------------------------------------------
 		|
-		| Which Eloquent model should be used for all issues
+		| Which Eloquent model should be used for issues
 		|
 		*/
 
@@ -26,6 +26,21 @@ return array(
 		*/
 
 		'private' => true,
+
+	),
+
+	'messages' => array(
+
+		/*
+		|--------------------------------------------------------------------------
+		| Model
+		|--------------------------------------------------------------------------
+		|
+		| Which Eloquent model should be used for messages
+		|
+		*/
+
+		'model' => 'Clumsy\IssueTracker\Models\IssueMessage',
 
 	),
 

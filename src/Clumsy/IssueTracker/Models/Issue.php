@@ -18,8 +18,10 @@ class Issue extends Eloquent implements IssueInterface {
         return $this->hasMany(IssueTracker::getMessageModel());
     }
 
-    public function addMessage(MessageInterface $message)
+    public function addMessage(array $attributes, $author)
     {
+        $message = IssueTracker::createMessage(array $attributes, $author);
+
         $this->messages()->save($message);
 
         return $this;

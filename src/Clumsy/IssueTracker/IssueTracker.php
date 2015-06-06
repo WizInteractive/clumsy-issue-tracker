@@ -64,4 +64,13 @@ class IssueTracker {
 
         return $issue;
     }
+
+    public function createMessage(array $attributes, $author)
+    {
+        $attributes = array('author_id' => $author->id, 'author_type' => class_basename($author)) + $attributes;
+
+        $message = $this->messages->create($attributes);
+
+        return $issue;
+    }
 }
