@@ -16,6 +16,8 @@ class CreateIssuesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
+			$table->string('title')->nullable()->default(null);
+			$table->text('description')->nullable()->default(null);
 			$table->boolean('private')->default(0);
 			$table->boolean('acknowledged')->default(0);
 			$table->boolean('resolved')->default(0);
