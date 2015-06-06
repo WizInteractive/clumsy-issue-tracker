@@ -9,6 +9,16 @@ trait IssueTracked {
         return $this->morphToMany(IssueTracker::getIssueModel(), 'issue_subject');
     }
 
+    public function pendingIssues()
+    {
+        return $this->issues()->where('resolved', false);
+    }
+
+    public function resolvedIssues()
+    {
+        return $this->issues()->where('resolved', true);
+    }
+
     public function createIssue(array $attributes = null)
     {
         return IssueTracker::create($this, $attributes);

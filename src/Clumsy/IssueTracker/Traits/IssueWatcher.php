@@ -14,6 +14,16 @@ trait IssueWatcher {
                     );
     }
 
+    public function pendingIssues()
+    {
+        return $this->issues()->where('resolved', false);
+    }
+
+    public function resolvedIssues()
+    {
+        return $this->issues()->where('resolved', true);
+    }
+
     public function issuesOwned()
     {
         return $this->morphToMany(IssueTracker::getIssueModel(), 'issue_watcher')
@@ -23,6 +33,16 @@ trait IssueWatcher {
                         'owner'
                     )
                     ->where('owner', true);
+    }
+
+    public function pendingIssuesOwned()
+    {
+        return $this->issuesOwned()->where('resolved', false);
+    }
+
+    public function resolvedIssuesOwned()
+    {
+        return $this->issuesOwned()->where('resolved', true);
     }
 
     public function messages()
