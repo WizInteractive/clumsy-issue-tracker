@@ -46,6 +46,11 @@ trait IssueWatcher {
         return $this->issuesOwned()->where('resolved', true);
     }
 
+    public function watchIssue(IssueInterface $issue, $owner = false)
+    {
+        return IssueTracker::addWatcher($issue, $this, $owner);
+    }
+
     public function ownsIssue(IssueInterface $issue)
     {
         $owned = $this->issuesOwned->lists('id');

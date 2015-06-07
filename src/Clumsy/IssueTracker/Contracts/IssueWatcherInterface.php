@@ -16,6 +16,8 @@ interface IssueWatcherInterface {
 
     public function resolvedIssuesOwned();
 
+    public function watchIssue(IssueInterface $issue, $owner = false);
+
     public function ownsIssue(IssueInterface $issue);
 
     public function messages();   

@@ -1,6 +1,7 @@
 <?php namespace Clumsy\IssueTracker\Traits;
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
+use Clumsy\IssueTracker\Contracts\IssueInterface;
 
 trait IssueTracked {
 
@@ -22,5 +23,10 @@ trait IssueTracked {
     public function createIssue(array $attributes = null)
     {
         return IssueTracker::create($this, $attributes);
+    }
+
+    public function assignIssue(IssueInterface $issue)
+    {
+        return $this->issues()->save($issue);
     }
 }

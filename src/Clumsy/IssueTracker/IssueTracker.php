@@ -1,7 +1,6 @@
 <?php namespace Clumsy\IssueTracker;
 
 use Illuminate\Config\Repository as Config;
-use Illuminate\Support\Facades\DB;
 use Clumsy\IssueTracker\Contracts\IssueInterface;
 use Clumsy\IssueTracker\Contracts\IssueWatcherInterface;
 use Clumsy\IssueTracker\Contracts\IssueSubjectInterface;
@@ -9,8 +8,6 @@ use Clumsy\IssueTracker\Support\IssueProvider;
 use Clumsy\IssueTracker\Support\MessageProvider;
 
 class IssueTracker {
-
-    protected $watchers_table = 'issue_watchers';
 
     public function __construct(IssueProvider $issue_provider, MessageProvider $message_provider, Config $config)
     {
@@ -32,7 +29,7 @@ class IssueTracker {
 
     public function addWatcher(IssueInterface $issue, IssueWatcherInterface $watcher, $owner = false)
     {
-        $watcher->issues()->save($issue, compact('owner'));
+        return $watcher->issues()->save($issue, compact('owner'));
     }
 
     public function addDefaultOwners(IssueInterface $issue)
