@@ -2,26 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Clumsy\IssueTracker\Contracts\IssueMessageInterface;
-use Clumsy\IssueTracker\Facade as IssueTracker;
+use Clumsy\IssueTracker\Traits\IssueMessage as IssueMessageTrait;
 
 class IssueMessage extends Eloquent implements IssueMessageInterface {
 
-    protected $touches = array('issue');
-
-    protected $guarded = array(
-        'id',
-        'created_at',
-        'updated_at',
-        'issue_id',
-    );
-
-    public function issue()
-    {
-        return $this->belongsTo(IssueTracker::getIssueModel());
-    }
-
-    public function author()
-    {
-        return $this->morphTo();
-    }
+    use IssueMessageTrait;
 }
