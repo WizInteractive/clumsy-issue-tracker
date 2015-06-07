@@ -20,5 +20,5 @@ interface IssueWatcherInterface {
 
     public function ownsIssue(IssueInterface $issue);
 
-    public function messages();   
+    public function issueMessages();   
 }

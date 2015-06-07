@@ -13,7 +13,7 @@ class Issue extends Eloquent implements IssueInterface {
         'updated_at',
     );
 
-    public function messages()
+    public function issueMessages()
     {
         return $this->hasMany(IssueTracker::getMessageModel());
     }
@@ -22,7 +22,7 @@ class Issue extends Eloquent implements IssueInterface {
     {
         $message = IssueTracker::createMessage($attributes, $author);
 
-        $this->messages()->save($message);
+        $this->issueMessages()->save($message);
 
         return $this;
     }

@@ -58,7 +58,7 @@ trait IssueWatcher {
         return in_array($issue->id, $owned);
     }
 
-    public function messages()
+    public function issueMessages()
     {
         return $this->morphMany(IssueTracker::getMessageModel(), 'author');
     }

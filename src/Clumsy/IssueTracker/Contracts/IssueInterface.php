@@ -2,7 +2,7 @@
 
 interface IssueInterface {
 
-    public function messages();
+    public function issueMessages();
 
     public function addMessage(array $attributes, $author);
 }
