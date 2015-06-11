@@ -32,10 +32,8 @@ class IssueTracker {
         return $watcher->issues()->save($issue, compact('owner'));
     }
 
-    public function addDefaultOwners(IssueInterface $issue)
+    public function addOwnersFromArray(IssueInterface $issue, array $owners)
     {
-        $owners = (array)$this->config->get('clumsy/issue-tracker::watchers.owners');
-
         foreach ($owners as $class => $ids)
         {
             $class = '\\'.ltrim($class, '\\');
@@ -60,7 +58,8 @@ class IssueTracker {
 
         $subject->issues()->save($issue);
 
-        $this->addDefaultOwners($issue);
+        $this->addOwnersFromArray($issue, (array)$this->config->get('clumsy/issue-tracker::watchers.owners'));
+        $this->addOwnersFromArray($issue, (array)$subject->defaultIssueOwners());
 
         return $issue;
     }

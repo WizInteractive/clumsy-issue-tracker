@@ -13,4 +13,6 @@ interface IssueSubjectInterface {
     public function createIssue(array $attributes = null);
 
     public function assignIssue(IssueInterface $issue);
+
+    public function defaultIssueOwners();
 }

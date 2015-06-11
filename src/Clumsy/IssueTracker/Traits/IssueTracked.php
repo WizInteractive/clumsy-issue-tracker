@@ -29,4 +29,9 @@ trait IssueTracked {
     {
         return $this->issues()->save($issue);
     }
+
+    public function defaultIssueOwners()
+    {
+        return array();
+    }
 }

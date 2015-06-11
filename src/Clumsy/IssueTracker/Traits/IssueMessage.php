@@ -2,7 +2,7 @@
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
 
-trait IssueMesage {
+trait IssueMessage {
 
     protected $touches = array('issue');
 
