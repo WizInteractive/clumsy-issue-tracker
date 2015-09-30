@@ -1,15 +1,15 @@
-<?php namespace Clumsy\IssueTracker\Support;
+<?php
+namespace Clumsy\IssueTracker\Support;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-abstract class Provider {
-
+abstract class Provider
+{
     protected $model;
 
     public function __construct($model = null)
     {
-        if ($model)
-        {
+        if ($model) {
             $this->model = $model;
         }
     }

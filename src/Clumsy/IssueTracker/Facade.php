@@ -1,12 +1,15 @@
-<?php namespace Clumsy\IssueTracker;
+<?php
+namespace Clumsy\IssueTracker;
 
-class Facade extends \Illuminate\Support\Facades\Facade {
-
+class Facade extends \Illuminate\Support\Facades\Facade
+{
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'clumsy.issue-tracker'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'clumsy.issue-tracker';
+    }
 }

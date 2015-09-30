@@ -1,9 +1,10 @@
-<?php namespace Clumsy\IssueTracker\Contracts;
+<?php
+namespace Clumsy\IssueTracker\Contracts;
 
 use Clumsy\IssueTracker\Contracts\IssueInterface;
 
-interface IssueSubjectInterface {
-
+interface IssueSubjectInterface
+{
     public function issues();
 
     public function pendingIssues();

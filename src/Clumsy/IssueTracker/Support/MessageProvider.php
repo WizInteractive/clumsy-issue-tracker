@@ -1,6 +1,7 @@
-<?php namespace Clumsy\IssueTracker\Support;
+<?php
+namespace Clumsy\IssueTracker\Support;
 
-class MessageProvider extends Provider {
-
+class MessageProvider extends Provider
+{
     protected $model = 'Clumsy\IssueTracker\Models\IssueMessage';
 }

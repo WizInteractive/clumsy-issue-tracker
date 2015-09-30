@@ -1,7 +1,8 @@
-<?php namespace Clumsy\IssueTracker\Contracts;
+<?php
+namespace Clumsy\IssueTracker\Contracts;
 
-interface IssueMessageInterface {
-
+interface IssueMessageInterface
+{
     public function issue();
 
     public function author();

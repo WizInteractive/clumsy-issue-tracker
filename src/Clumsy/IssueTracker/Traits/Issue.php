@@ -1,15 +1,10 @@
-<?php namespace Clumsy\IssueTracker\Traits;
+<?php
+namespace Clumsy\IssueTracker\Traits;
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
 
-trait Issue {
-
-    protected $guarded = array(
-        'id',
-        'created_at',
-        'updated_at',
-    );
-
+trait Issue
+{
     public function issueMessages()
     {
         return $this->hasMany(IssueTracker::getMessageModel());

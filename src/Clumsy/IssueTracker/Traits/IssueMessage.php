@@ -1,17 +1,18 @@
-<?php namespace Clumsy\IssueTracker\Traits;
+<?php
+namespace Clumsy\IssueTracker\Traits;
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
 
-trait IssueMessage {
-
-    protected $touches = array('issue');
-
-    protected $guarded = array(
-        'id',
-        'created_at',
-        'updated_at',
-        'issue_id',
-    );
+trait IssueMessage
+{
+    public static function bootIssueMessage()
+    {
+        self::saving(function ($model) {
+            $touches = $model->getTouchedRelations();
+            $touches[] = 'issue';
+            $model->setTouchedRelations($touches);
+        });
+    }
 
     public function issue()
     {

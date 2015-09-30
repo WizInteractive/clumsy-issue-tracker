@@ -1,9 +1,10 @@
-<?php namespace Clumsy\IssueTracker\Contracts;
+<?php
+namespace Clumsy\IssueTracker\Contracts;
 
 use Clumsy\IssueTracker\Contracts\IssueInterface;
 
-interface IssueWatcherInterface {
-
+interface IssueWatcherInterface
+{
     public function issues();
 
     public function pendingIssues();
@@ -20,5 +21,5 @@ interface IssueWatcherInterface {
 
     public function ownsIssue(IssueInterface $issue);
 
-    public function issueMessages();   
+    public function issueMessages();
 }

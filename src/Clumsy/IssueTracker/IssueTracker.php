@@ -1,4 +1,5 @@
-<?php namespace Clumsy\IssueTracker;
+<?php
+namespace Clumsy\IssueTracker;
 
 use Illuminate\Config\Repository as Config;
 use Clumsy\IssueTracker\Contracts\IssueInterface;
@@ -7,13 +8,13 @@ use Clumsy\IssueTracker\Contracts\IssueSubjectInterface;
 use Clumsy\IssueTracker\Support\IssueProvider;
 use Clumsy\IssueTracker\Support\MessageProvider;
 
-class IssueTracker {
-
+class IssueTracker
+{
     public function __construct(IssueProvider $issue_provider, MessageProvider $message_provider, Config $config)
     {
         $this->issues = $issue_provider;
         $this->messages = $message_provider;
-        
+
         $this->config = $config;
     }
 
@@ -34,16 +35,13 @@ class IssueTracker {
 
     public function addOwnersFromArray(IssueInterface $issue, array $owners)
     {
-        foreach ($owners as $class => $ids)
-        {
+        foreach ($owners as $class => $ids) {
             $class = '\\'.ltrim($class, '\\');
 
-            foreach ((array)$ids as $id)
-            {
+            foreach ((array)$ids as $id) {
                 $model = with(new $class)->find($id);
-                
-                if ($model)
-                {
+
+                if ($model) {
                     $this->addWatcher($issue, $model, $owner = true);
                 }
             }
@@ -53,7 +51,7 @@ class IssueTracker {
     public function create(IssueSubjectInterface $subject, array $attributes = null)
     {
         $attributes = array('private' => (bool)$this->config->get('clumsy/issue-tracker::issues.private')) + (array)$attributes;
-        
+
         $issue = $this->issues->create($attributes);
 
         $subject->issues()->save($issue);

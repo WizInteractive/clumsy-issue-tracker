@@ -1,10 +1,11 @@
-<?php namespace Clumsy\IssueTracker\Traits;
+<?php
+namespace Clumsy\IssueTracker\Traits;
 
 use Clumsy\IssueTracker\Facade as IssueTracker;
 use Clumsy\IssueTracker\Contracts\IssueInterface;
 
-trait IssueWatcher {
-
+trait IssueWatcher
+{
     public function issues()
     {
         return $this->morphToMany(IssueTracker::getIssueModel(), 'issue_watcher')
